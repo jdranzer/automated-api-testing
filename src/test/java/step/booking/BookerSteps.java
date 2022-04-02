@@ -55,4 +55,17 @@ public class BookerSteps extends GenericSteps {
 
         return post(path, reqSpec);
     }
+
+    @Step("Get a booking by key {0} using the path {1}")
+    public ValidatableResponse getByKey(String key, String path){
+        Map<String, ?> queryParams = new HashMap<String, String>(){{
+            put(PathParams.FIRST_NAME.getValue(), key);
+        }};
+        RequestSpecification requestSpecification = new Specifications(){{
+            setContentType(ContentType.JSON);
+            setQueryParams(queryParams);
+        }}.buildSpecification();
+
+        return get(path, requestSpecification);
+    }
 }

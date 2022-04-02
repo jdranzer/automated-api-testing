@@ -1,5 +1,6 @@
 package step;
 
+import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 import net.serenitybdd.rest.SerenityRest;
@@ -54,6 +55,21 @@ public class GenericSteps {
                 .spec(reqSpec)
                 .when()
                 .delete(path)
+                .then().log().all();
+    }
+
+    /**
+     * Generic method to make a patch request
+     * @param path
+     * @param reqSpec
+     * @return
+     */
+    protected ValidatableResponse patch(String path, RequestSpecification reqSpec){
+        return SerenityRest
+                .given()
+                .spec(reqSpec)
+                .when()
+                .patch(path)
                 .then().log().all();
     }
 }

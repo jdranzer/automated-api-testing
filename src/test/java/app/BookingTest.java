@@ -32,7 +32,6 @@ public class BookingTest extends TestBase {
 
     @Steps
     BookerSteps steps;
-
     BookingDate bookingDate;
     Booking booking;
 
@@ -99,6 +98,18 @@ public class BookingTest extends TestBase {
                 .as(Booking.class);
 
         Assert.assertEquals(bookingParent.getBooking(), booking1);
+    }
+
+    @Test
+    @Title("Search a booking by First Name")
+    public void searchBookingByFirstname(){
+        List<String> bookings = steps.getByKey("Rachel", Endpoint.BOOKING.getValue())
+                .statusCode(200)
+                .extract()
+                .path("bookingid");
+
+        Assert.assertTrue(bookings.size()>0);
+
     }
 
 }
