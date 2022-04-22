@@ -6,7 +6,8 @@ package utils.constants;
  */
 public enum PathParams implements Constant<String> {
     BOOKING_ID("booking_id"),
-    FIRST_NAME("firstname");
+    FIRST_NAME("firstname"),
+    LAST_NAME("lastname");
 
     private String value;
 

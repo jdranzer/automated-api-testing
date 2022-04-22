@@ -112,4 +112,15 @@ public class BookingTest extends TestBase {
 
     }
 
+    @Test
+    @Title("Search a booking by Last Name")
+    public void searchBookingByLastname(){
+        List<String> bookings = steps.getByLastname("White", Endpoint.BOOKING.getValue())
+                .statusCode(200)
+                .extract()
+                .path("bookingid");
+
+        Assert.assertTrue(bookings.size()>0);
+    }
+
 }
